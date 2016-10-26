@@ -6,25 +6,50 @@ using System.Web.Mvc;
 
 namespace HangFireMailerDemo.Controllers
 {
+    using Models;
+
     public class HomeController : Controller
     {
+
+        private readonly MailerDbContext _db = new MailerDbContext();
+
         public ActionResult Index()
         {
-            return View();
+            var comments = _db.Comments.OrderBy(x => x.Id).ToList();
+
+            return View(comments);
         }
 
-        public ActionResult About()
+        [HttpPost]
+        public ActionResult Create(Comment model)
         {
-            ViewBag.Message = "Your application description page.";
+            if (ModelState.IsValid)
+            {
+                _db.Comments.Add(model);
+                _db.SaveChanges();
 
-            return View();
+
+                var email = new NewCommentEmail
+                {
+                    To = "cbryan@marathonus.com",
+                    UserName = model.UserName,
+                    Comment = model.Text
+                };
+
+                email.Send();
+            }
+
+            return RedirectToAction("Index");
         }
 
-        public ActionResult Contact()
+        protected override void Dispose(bool disposing)
         {
-            ViewBag.Message = "Your contact page.";
+            if (disposing)
+            {
+                _db.Dispose();
+            }
 
-            return View();
+            base.Dispose(disposing);
         }
     }
 }
