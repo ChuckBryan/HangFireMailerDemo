@@ -5,7 +5,7 @@
 
     public class MailerDbContext : DbContext
     {
-        public MailerDbContext() : base("MailerDb")
+        public MailerDbContext() : base("DefaultConnection")
         {
             
         }
