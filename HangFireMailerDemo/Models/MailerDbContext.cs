@@ -10,6 +10,6 @@
             
         }
 
-        public DbSet<MovieQuote> Comments { get; set; }
+        public DbSet<MovieQuote> MovieQuotes { get; set; }
     }
 }

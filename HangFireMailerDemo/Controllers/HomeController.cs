@@ -12,7 +12,7 @@ namespace HangFireMailerDemo.Controllers
 
         public ActionResult Index()
         {
-            var comments = _db.Comments.OrderBy(x => x.Id).ToList();
+            var comments = _db.MovieQuotes.OrderBy(x => x.Id).ToList();
 
             return View(comments);
         }
@@ -24,7 +24,7 @@ namespace HangFireMailerDemo.Controllers
             if (!ModelState.IsValid) return RedirectToAction("Index");
 
             // SAVE THE MODEL
-            _db.Comments.Add(model);
+            _db.MovieQuotes.Add(model);
             _db.SaveChanges();
 
             // SEND THE EMAIL
