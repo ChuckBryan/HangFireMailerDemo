@@ -1,0 +1,28 @@
+﻿        public static void NotifyNewQuote(int quoteId)
+        {
+            // REMEMBER: THIS WILL BE RUNNING IN THE HANGFIRE SERVER...NOT ASP.NET
+            // Prepare Postal Classes to work outside of ASP.NET
+            var viewsPath = Path.GetFullPath(HostingEnvironment.MapPath(@"~/Views/Emails"));
+            var engines = new ViewEngineCollection();
+            engines.Add(new FileSystemRazorViewEngine(viewsPath));
+
+            var emailService = new EmailService(engines);
+
+            // Get Comment and send out a notification
+            using (var db = new MailerDbContext())
+            {
+                var savedQuote = db.MovieQuotes.Find(quoteId);
+                var email = new NewQuoteEmail
+                {
+                    To = "admin@moviequotedb.com",
+                    CharacterName = savedQuote.CharacterName,
+                    Movie = savedQuote.Movie,
+                    Quote = savedQuote.Quote
+                };
+
+                emailService.Send(email);
+            }
+        }
+		
+		
+		BackgroundJob.Enqueue(() => NotifyNewQuote(model.Id));
