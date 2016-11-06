@@ -1,30 +1,35 @@
-﻿
-<hr/>
-@model HangFireMailerDemo.Models.MovieQuote
-<h2>Add your Movies Quote!</h2>
-@using (Html.BeginForm("Create", "Home"))
-{
-    Html.EnableClientValidation();
+﻿@model HangFireMailerDemo.Models.MovieQuote
 
-    @Html.ValidationSummary(true)
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Add your Movies Quote!</h4>
+                </div>
+                <div class="modal-body">
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.Movie)
-        @Html.TextBoxFor(model => model.Movie, new { @class = "form-control", autocomplete = "off" })
-        @Html.ValidationMessageFor(model => model.Movie)
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Movie)
+                        @Html.TextBoxFor(model => model.Movie, new {@class = "form-control", autocomplete = "off"})
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.CharacterName)
+                        @Html.TextBoxFor(model => model.CharacterName, new {@class = "form-control", autocomplete = "off"})
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Quote)
+                        @Html.TextAreaFor(model => model.Quote, new {@class = "form-control", style = "min-height: 100px;"})
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Add Quote</button>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.CharacterName)
-        @Html.TextBoxFor(model => model.CharacterName, new { @class = "form-control" , autocomplete = "off" })
-        @Html.ValidationMessageFor(model => model.CharacterName)
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Quote)
-        @Html.TextAreaFor(model => model.Quote, new { @class = "form-control", style = "min-height: 100px;" })
-        @Html.ValidationMessageFor(model => model.Quote)
-    </div>
-
-    <button type="submit" class="btn btn-primary">Submit</button>
-}

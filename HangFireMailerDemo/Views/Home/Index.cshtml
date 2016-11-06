@@ -4,14 +4,26 @@
     ViewBag.Title = "Movie Quotes Home Page";
 }
 <h1>Movie Quotes</h1>
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+    Add a Quote
+</button>
 <hr/>
 <ul>
-    @foreach (var item in Model)
+    @if (!Model.Any())
     {
-        <li>
-            <h3>@item.Movie</h3>
-            <p>@item.CharacterName  - "@item.Quote"</p>
-        </li>
+        <div class="alert alert-info" role="alert">Add Some Quotes to the Movie Quote Database.</div>
+    }
+    @foreach(var item in Model)
+    {
+    <li>
+        <h3>@item.Movie</h3>
+        <p>@item.CharacterName - "@item.Quote"</p>
+    </li>
     }
 </ul>
-@Html.Partial("Create", new MovieQuote())
+
+
+@using (Html.BeginForm("Create", "Home"))
+{
+    @Html.Partial("Create", new MovieQuote())
+}

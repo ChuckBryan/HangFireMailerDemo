@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Linq;
 using System.Web.Mvc;
 
 namespace HangFireMailerDemo.Controllers
@@ -23,22 +20,23 @@ namespace HangFireMailerDemo.Controllers
         [HttpPost]
         public ActionResult Create(MovieQuote model)
         {
-            if (ModelState.IsValid)
+            // MODEL STATE VALIDATION
+            if (!ModelState.IsValid) return RedirectToAction("Index");
+
+            // SAVE THE MODEL
+            _db.Comments.Add(model);
+            _db.SaveChanges();
+
+            // SEND THE EMAIL
+            var email = new NewQuoteEmail
             {
-                _db.Comments.Add(model);
-                _db.SaveChanges();
+                To = "admin@moviequotedb.com",
+                CharacterName = model.CharacterName,
+                Movie = model.Movie,
+                Quote = model.Quote
+            };
 
-
-                var email = new NewQuoteEmail
-                {
-                    To = "cbryan@marathonus.com",
-                    CharacterName = model.CharacterName,
-                    Movie = model.Movie,
-                    Quote = model.Quote
-                };
-
-                email.Send();
-            }
+            email.Send();
 
             return RedirectToAction("Index");
         }
