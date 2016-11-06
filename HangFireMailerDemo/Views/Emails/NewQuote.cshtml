@@ -1,0 +1,15 @@
+﻿
+@model HangFireMailerDemo.Models.NewQuoteEmail
+To: @Model.To
+From: mailer@example.com
+Subject: New comment posted
+
+Hello,
+
+A new Quote has been added:
+
+@Model.Movie -  
+@Model.CharacterName: "@Html.Raw(Model.Quote)"
+
+
+

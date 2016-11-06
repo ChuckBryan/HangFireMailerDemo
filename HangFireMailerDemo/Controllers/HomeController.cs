@@ -21,7 +21,7 @@ namespace HangFireMailerDemo.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(Comment model)
+        public ActionResult Create(MovieQuote model)
         {
             if (ModelState.IsValid)
             {
@@ -29,11 +29,12 @@ namespace HangFireMailerDemo.Controllers
                 _db.SaveChanges();
 
 
-                var email = new NewCommentEmail
+                var email = new NewQuoteEmail
                 {
                     To = "cbryan@marathonus.com",
-                    UserName = model.UserName,
-                    Comment = model.Text
+                    CharacterName = model.CharacterName,
+                    Movie = model.Movie,
+                    Quote = model.Quote
                 };
 
                 email.Send();

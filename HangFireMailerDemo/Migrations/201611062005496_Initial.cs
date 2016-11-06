@@ -3,17 +3,18 @@ namespace HangFireMailerDemo.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class initial : DbMigration
+    public partial class Initial : DbMigration
     {
         public override void Up()
         {
             CreateTable(
-                "dbo.Comments",
+                "dbo.MovieQuotes",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        UserName = c.String(nullable: false),
-                        Text = c.String(nullable: false),
+                        Movie = c.String(nullable: false),
+                        CharacterName = c.String(nullable: false),
+                        Quote = c.String(nullable: false),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -21,7 +22,7 @@ namespace HangFireMailerDemo.Migrations
         
         public override void Down()
         {
-            DropTable("dbo.Comments");
+            DropTable("dbo.MovieQuotes");
         }
     }
 }

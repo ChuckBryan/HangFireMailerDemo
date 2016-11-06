@@ -1,16 +1,17 @@
 ﻿@using HangFireMailerDemo.Models
-@model IEnumerable<HangFireMailerDemo.Models.Comment>
+@model IEnumerable<HangFireMailerDemo.Models.MovieQuote>
 @{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Movie Quotes Home Page";
 }
-
+<h1>Movie Quotes</h1>
+<hr/>
 <ul>
     @foreach (var item in Model)
     {
         <li>
-            <h3>@item.UserName</h3>
-            <p>@item.Text</p>
+            <h3>@item.Movie</h3>
+            <p>@item.CharacterName  - "@item.Quote"</p>
         </li>
     }
 </ul>
-@Html.Partial("Create", new Comment())
+@Html.Partial("Create", new MovieQuote())
