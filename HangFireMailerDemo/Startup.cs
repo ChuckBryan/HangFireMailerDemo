@@ -7,10 +7,17 @@ using Owin;
 
 namespace HangFireMailerDemo
 {
+    using Hangfire;
+
     public class Startup
     {
         public void Configuration(IAppBuilder app)
         {
+            GlobalConfiguration.Configuration
+    .UseSqlServerStorage("DefaultConnection");
+
+            app.UseHangfireDashboard();
+            app.UseHangfireServer();
         }
     }
 }

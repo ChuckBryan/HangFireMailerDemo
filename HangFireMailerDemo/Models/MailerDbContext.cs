@@ -5,11 +5,11 @@
 
     public class MailerDbContext : DbContext
     {
-        public MailerDbContext() : base("MailerDb")
+        public MailerDbContext() : base("DefaultConnection")
         {
             
         }
 
-        public DbSet<MovieQuote> Comments { get; set; }
+        public DbSet<MovieQuote> MovieQuotes { get; set; }
     }
 }
