@@ -32,8 +32,8 @@ namespace HangFireMailerDemo.Controllers
             _db.SaveChanges();
 
             // SEND THE EMAIL
-            BackgroundJob.Enqueue(() => NotifyNewComment(model.Id));
-
+            //BackgroundJob.Enqueue(() => NotifyNewComment(model.Id));
+            NotifyNewComment(model.Id);
             return RedirectToAction("Index");
         }
 
