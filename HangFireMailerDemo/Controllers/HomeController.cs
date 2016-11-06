@@ -32,12 +32,12 @@ namespace HangFireMailerDemo.Controllers
             _db.SaveChanges();
 
             // SEND THE EMAIL
-            //BackgroundJob.Enqueue(() => NotifyNewComment(model.Id));
-            NotifyNewComment(model.Id);
+            BackgroundJob.Enqueue(() => NotifyNewQuote(model.Id));
+            
             return RedirectToAction("Index");
         }
 
-        public static void NotifyNewComment(int quoteId)
+        public static void NotifyNewQuote(int quoteId)
         {
             // REMEMBER: THIS WILL BE RUNNING IN THE HANGFIRE SERVER...NOT ASP.NET
             // Prepare Postal Classes to work outside of ASP.NET

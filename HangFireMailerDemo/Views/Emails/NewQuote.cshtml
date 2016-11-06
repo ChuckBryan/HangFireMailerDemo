@@ -1,15 +1,16 @@
 ﻿
+@using System.Security.AccessControl
 @model HangFireMailerDemo.Models.NewQuoteEmail
 To: @Model.To
 From: mailer@example.com
-Subject: New comment posted
+Subject: New Quote posted
 
 Hello,
 
 A new Quote has been added:
 
 @Model.Movie -  
-@Model.CharacterName: "@Html.Raw(Model.Quote)"
+@Model.CharacterName: "@Raw(Model.Quote)"
 
 
 
