@@ -2,17 +2,25 @@
 @model IEnumerable<HangFireMailerDemo.Models.MovieQuote>
 @{
     ViewBag.Title = "Movie Quotes Home Page";
+    string errorMessage = ViewBag.ErrorMessage;
+}
+
+@if (!string.IsNullOrWhiteSpace(errorMessage))
+{
+    <div class="alert alert-danger alert-dismissible" role="alert">@errorMessage</div>
+}
+@if (!Model.Any())
+{
+    <div class="alert alert-info" role="alert">Add Some Quotes to the Movie Quote Database.</div>
 }
 <h1>Movie Quotes</h1>
 <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
     Add a Quote
 </button>
 <hr/>
+
 <ul>
-    @if (!Model.Any())
-    {
-        <div class="alert alert-info" role="alert">Add Some Quotes to the Movie Quote Database.</div>
-    }
+
     @foreach(var item in Model)
     {
     <li>
