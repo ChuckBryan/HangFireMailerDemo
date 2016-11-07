@@ -47,7 +47,7 @@ namespace HangFireMailerDemo.Controllers
             }
             catch (SmtpException ex)
             {
-                TempData["ErrorMessage"] = "I'm sorry Dave, I'm afraid I can't do that - HAL 9000, 2001: A Space Odyssey:"  + ex.Message;
+                TempData["ErrorMessage"] = "I'm sorry Dave, I'm afraid I can't do that - HAL 9000, 2001: A Space Odyssey: "  + ex.Message;
                 
             }
             
