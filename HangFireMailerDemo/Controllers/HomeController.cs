@@ -45,9 +45,10 @@ namespace HangFireMailerDemo.Controllers
             {
                 email.Send();
             }
-            catch (SmtpException)
+            catch (SmtpException ex)
             {
-                TempData["ErrorMessage"] = "I'm sorry Dave, I'm afraid I can't do that - HAL 9000, 2001: A Space Odyssey";
+                TempData["ErrorMessage"] = "I'm sorry Dave, I'm afraid I can't do that - HAL 9000, 2001: A Space Odyssey:"  + ex.Message;
+                
             }
             
 
