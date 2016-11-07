@@ -17,7 +17,7 @@ namespace HangFireMailerDemo.Controllers
 
             ViewBag.ErrorMessage = TempData["ErrorMessage"];
 
-            var comments = _db.MovieQuotes.OrderBy(x => x.Id).ToList();
+            var comments = _db.MovieQuotes.OrderByDescending(x => x.Id).ToList();
 
             return View(comments);
         }
